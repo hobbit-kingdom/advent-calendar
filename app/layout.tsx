@@ -6,6 +6,11 @@ export const metadata: Metadata = {
     description: 'Experience the journey of Bilbo Baggins with our The Hobbit themed advent calendar. Unlock a new surprise each day leading up to Christmas.',
     keywords: ['advent calendar', 'The Hobbit', 'LOTR', 'Middle-earth', 'Christmas', 'Tolkien'],
 
+    // Favicon
+    icons: {
+        icon: '/favicon.ico',
+    },
+
     // Open Graph metadata (for Facebook, Discord, LinkedIn, etc.)
     openGraph: {
         title: 'The Hobbit Advent Calendar',
