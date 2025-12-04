@@ -4,6 +4,8 @@ import { useState } from 'react';
 import styles from './AdventDoor.module.css';
 import { AdventDay } from '../data/adventData';
 import ImageModal from './ImageModal';
+import { useLanguage } from '../context/LanguageContext';
+import { translations } from '../data/translations';
 
 interface AdventDoorProps {
     day: AdventDay;
@@ -13,6 +15,8 @@ interface AdventDoorProps {
 
 export default function AdventDoor({ day, isUnlocked, isPast }: AdventDoorProps) {
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const { language } = useLanguage();
+    const t = translations[language];
 
     const handleClick = () => {
         if (isUnlocked || isPast) {
@@ -26,6 +30,11 @@ export default function AdventDoor({ day, isUnlocked, isPast }: AdventDoorProps)
 
     // Check if this day has been opened (for visual preview)
     const showPreview = isPast;
+
+    // Get content based on language
+    const title = language === 'ru' ? day.titleRu : day.title;
+    const quote = language === 'ru' ? day.quoteRu : day.quote;
+    const author = language === 'ru' ? day.authorRu : day.author;
 
     return (
         <>
@@ -53,17 +62,17 @@ export default function AdventDoor({ day, isUnlocked, isPast }: AdventDoorProps)
                                 </div>
                             )}
                             {(isUnlocked || isPast) && (
-                                <div className={styles.hoverText}>Click to open</div>
+                                <div className={styles.hoverText}>{t.clickToOpen}</div>
                             )}
                         </div>
                     ) : (
                         // Opened door with preview
                         <div className={styles.doorContent}>
-                            <div className={styles.dayBadge}>Day {day.day}</div>
-                            <h3 className={styles.title}>{day.title}</h3>
-                            <p className={styles.quotePreview}>"{day.quote}"</p>
-                            <span className={styles.author}>— {day.author}</span>
-                            <div className={styles.viewMore}>Click to view ✦</div>
+                            <div className={styles.dayBadge}>{t.day} {day.day}</div>
+                            <h3 className={styles.title}>{title}</h3>
+                            <p className={styles.quotePreview}>"{quote}"</p>
+                            <span className={styles.author}>— {author}</span>
+                            <div className={styles.viewMore}>{t.clickToView}</div>
                         </div>
                     )}
                 </div>

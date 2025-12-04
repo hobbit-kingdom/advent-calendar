@@ -1,0 +1,59 @@
+.toggleButton {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    background: linear-gradient(135deg, rgba(139, 90, 43, 0.8), rgba(101, 67, 33, 0.9));
+    border: 2px solid rgba(212, 175, 55, 0.6);
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 1.2rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.toggleButton:hover {
+    background: linear-gradient(135deg, rgba(159, 110, 53, 0.9), rgba(121, 87, 43, 0.95));
+    border-color: rgba(212, 175, 55, 0.9);
+    box-shadow: 0 4px 20px rgba(212, 175, 55, 0.4),
+                0 0 30px rgba(212, 175, 55, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    transform: translateY(-2px);
+}
+
+.toggleButton:active {
+    transform: translateY(0);
+}
+
+.flag {
+    font-size: 1.3rem;
+    opacity: 0.5;
+    transition: all 0.3s ease;
+    filter: grayscale(50%);
+}
+
+.flag.active {
+    opacity: 1;
+    filter: grayscale(0%);
+    transform: scale(1.1);
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.divider {
+    color: rgba(212, 175, 55, 0.6);
+    font-weight: 300;
+    font-size: 1rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .toggleButton {
+        padding: 6px 12px;
+        font-size: 1rem;
+    }
+
+    .flag {
+        font-size: 1.1rem;
+    }
+}

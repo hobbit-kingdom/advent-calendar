@@ -12,6 +12,12 @@
     z-index: 2;
 }
 
+.headerTop {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 1rem;
+}
+
 .headerContent {
     margin-bottom: 2rem;
 }

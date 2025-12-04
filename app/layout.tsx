@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import './globals.css'
+import { LanguageProvider } from './context/LanguageContext'
 
 export const metadata: Metadata = {
     title: 'The Hobbit Advent Calendar - A Journey Through December',
@@ -42,7 +43,11 @@ export default function RootLayout({
 }) {
     return (
         <html lang="en">
-            <body>{children}</body>
+            <body>
+                <LanguageProvider>
+                    {children}
+                </LanguageProvider>
+            </body>
         </html>
     )
 }

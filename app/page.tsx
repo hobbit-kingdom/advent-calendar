@@ -3,9 +3,15 @@
 import { useMemo } from 'react';
 import styles from './page.module.css';
 import AdventDoor from './components/AdventDoor';
+import LanguageToggle from './components/LanguageToggle';
 import { adventDays } from './data/adventData';
+import { translations } from './data/translations';
+import { useLanguage } from './context/LanguageContext';
 
 export default function Home() {
+    const { language } = useLanguage();
+    const t = translations[language];
+
     // Current date - December 4th, 2025
     const currentDate = useMemo(() => {
         return new Date('2025-12-04T11:30:00+02:00');
@@ -26,17 +32,25 @@ export default function Home() {
         <main className={styles.main}>
             {/* Header */}
             <header className={styles.header}>
+                <div className={styles.headerTop}>
+                    <LanguageToggle />
+                </div>
                 <div className={styles.headerContent}>
                     <h1 className={styles.title}>
-                        <span className={styles.titleMain}>Baggins journey</span>
-                        <span className={styles.titleSub}>Advent Calendar</span>
+                        <span className={styles.titleMain}>{t.titleMain}</span>
+                        <span className={styles.titleSub}>{t.titleSub}</span>
                     </h1>
                     <p className={styles.subtitle}>
-                        It's winter in Hobbiton! Enjoy the journey of Bilbo Baggins and some surprises!
+                        {t.subtitle}
                     </p>
                     <div className={styles.currentDate}>
-                        <span className={styles.dateLabel}>Today:</span>
-                        <span className={styles.dateValue}>December {currentDay}, 2025</span>
+                        <span className={styles.dateLabel}>{t.today}</span>
+                        <span className={styles.dateValue}>
+                            {language === 'en'
+                                ? `${t.december} ${currentDay}, 2025`
+                                : `${currentDay} ${t.december} 2025`
+                            }
+                        </span>
                     </div>
                 </div>
                 <div className={styles.ornamentalLine}>
@@ -66,13 +80,13 @@ export default function Home() {
             <footer className={styles.footer}>
                 <div className={styles.footerQuote}>
                     <p className={styles.quoteText}>
-                        "Even the smallest person can change the course of the future."
+                        "{t.footerQuote}"
                     </p>
-                    <p className={styles.quoteAuthor}>— Galadriel</p>
+                    <p className={styles.quoteAuthor}>— {t.footerAuthor}</p>
                 </div>
                 <div className={styles.footerInfo}>
-                    <p>Days Unlocked: {currentDay} / 24</p>
-                    <p>Return each day for a new surprise!</p>
+                    <p>{t.daysUnlocked} {currentDay} / 24</p>
+                    <p>{t.returnDaily}</p>
                 </div>
             </footer>
 
